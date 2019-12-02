@@ -1,18 +1,22 @@
-import ls from "local-storage";
-
 export const ADD_TODO = 'ADD_TODO'
 export const EDIT_TODO = 'EDIT_TODO'
 export const FETCH_TODOS = 'FETCH_TODOS'
 export const REMOVE_TODO = 'REMOVE_TODO'
 export const SHOW_LOADER = 'SHOW_LOADER'
+export const HIDE_LOADER = 'HIDE_LOADER'
 
-let nextTodoId = Array.isArray(ls.get('todo-items')) ? ls.get('todo-items').length : 0;
+export const fetchTodos = (items) => {
+  return {
+    type: FETCH_TODOS,
+    payload: items
+  }
+}
 
-export const addTodo = (title) => {
+export const addTodo = (id, title) => {
   return {
     type: ADD_TODO,
     payload: {
-      id: nextTodoId++,
+      id,
       title
     }
   }
@@ -28,12 +32,20 @@ export const editTodo = (id, title) => {
   }
 }
 
-export const showLoader = (isValue) => {
+export const showLoader = () => {
   return {
     type: SHOW_LOADER,
-    isLoading: isValue,
+    payload: {},
   }
 }
+
+export const hideLoader = () => {
+  return {
+    type: HIDE_LOADER,
+    payload: {},
+  }
+}
+
 
 export const removeTodo = (id) => {
   return {

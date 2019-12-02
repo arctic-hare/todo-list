@@ -35,6 +35,7 @@ export default function Input(props) {
                onChange={handleOnChange}
                value={value}
                required={props.required}
+               style={props.style}
         />
         {(isInvalid && String(value).length === 0) &&
         <span className="invalid-feedback">Поле «{props.label}» не может быть пустым</span>

@@ -4,20 +4,30 @@
   height: 43px;
   border: 1px solid #e6e6e6;
 
+  &>* {
+    padding: 10px;
+  }
 
   &__id {
-    padding: 5px 10px;
+
     display: flex;
     justify-content: space-between;
     border-right: 1px solid #e6e6e6;
+
+    @media (max-width: 400px) {
+      span {display: none;}
+    }
   }
   &__title {
-    padding: 5px 10px;
     border-right: 1px solid #e6e6e6;
     flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   &__control {
-    padding: 5px 10px;
+    flex-shrink: 0;
+    padding: 8px 10px;
   }
   &__edit {
     margin-right: 10px;

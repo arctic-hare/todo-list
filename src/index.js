@@ -6,16 +6,12 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-/*import thunk from "redux-thunk";
-import rootReducer from "./reducers/";
-import { composeWithDevTools } from "redux-devtools-extension";*/
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import todoApp from './reducers'
-console.log(todoApp);
-let store = createStore(todoApp)
 
-console.log('store.getState', store.getState())
-
+const store = createStore(todoApp, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>

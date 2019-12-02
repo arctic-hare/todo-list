@@ -39,7 +39,7 @@
   &--add-task {
     margin-left: auto;
     .popup__inner {
-      width: 465px;
+      max-width: 465px;
     }
   }
 }

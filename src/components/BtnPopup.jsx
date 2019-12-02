@@ -15,9 +15,6 @@ export default function BtnPopup(props) {
 
   const popup = {closePopup};
 
-
-  console.log();
-
   return ( <div className={cn('popup', props.modifier)}>
     <button type="button"
             className="btn ml-auto"
