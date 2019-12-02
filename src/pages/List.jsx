@@ -7,7 +7,6 @@ import AddTask from "../components/AddTask";
  function List() {
   const items = useSelector(state => state.items)
 
-   console.log('render List');
   return (
     <>
       <div className="d-flex mb-4">

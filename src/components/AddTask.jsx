@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Input from './Input'
-import axios from 'axios'
 import {useDispatch} from 'react-redux'
+import api from '../api/'
 import {addTodo} from '../actions/'
 import PopupContext from '../context/PopupContext';
 
@@ -13,9 +13,9 @@ export default function AddTask() {
 
   function handleOnSubmit(e) {
     e.preventDefault();
-    axios.post('https://test.megapolis-it.ru/api/list', {title})
-    .then(({data}) => {
-      dispatch(addTodo(data.id,title));
+    api.addTodo({title})
+    .then(({id}) => {
+      dispatch(addTodo(id, title));
       popup.closePopup();
     });
   }

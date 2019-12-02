@@ -1,4 +1,4 @@
-import {ADD_TODO, EDIT_TODO, FETCH_TODOS, REMOVE_TODO,  SHOW_LOADER, HIDE_LOADER} from '../actions/'
+import {ADD_TODO, EDIT_TODO, FETCH_TODOS, REMOVE_TODO,  SHOW_LOADER} from '../actions/actionsType'
 
 const initialState = {
   items: [],
@@ -7,7 +7,6 @@ const initialState = {
 
 const handlers = {
   [SHOW_LOADER]: state => ({...state, isLoading: true}),
-  [HIDE_LOADER]: state => ({...state, isLoading: false}),
   [ADD_TODO]: (state, {payload}) => ({
     ...state,
     items: [...state.items, payload]

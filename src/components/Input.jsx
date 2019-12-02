@@ -12,7 +12,8 @@ export default function Input(props) {
   const [isInvalid, setIsInvalid] = useState(false);
 
   function handleInvalid(e) {
-    e.preventDefault(); setIsInvalid(true)
+    e.preventDefault();
+    setIsInvalid(true)
   }
 
   function handleOnChange(e) {

@@ -3,30 +3,21 @@ import {useRoutes, navigate} from 'hookrouter';
 import routes from "./router";
 import Loader from "./components/Loader";
 import {useDispatch, useSelector} from "react-redux";
-import axios from 'axios'
+import api from './api'
 import {fetchTodos} from './actions'
 
-
 function App() {
-
   const dispatch = useDispatch();
   const items = useSelector(state => state.items)
 
-  function getData() {
-    return dispatch => {
-      axios.get('https://test.megapolis-it.ru/api/list')
-      .then(({data}) => {
-        console.log('response', data)
-        dispatch(fetchTodos(data.data))
-      });
-    };
-  }
-
   useEffect(() => {
-    dispatch(getData());
+    api.fetchTodos()
+    .then( data => {
+      dispatch(fetchTodos(data.items))
+    })
   }, [dispatch]);
 
-  const routeResult = useRoutes(routes);
+  const routeResult = useRoutes(routes(items));
 
   return (
     <div className="App">

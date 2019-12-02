@@ -1,8 +1,8 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 import {removeTodo, showLoader} from '../actions/'
-import axios from "axios";
 import {A} from 'hookrouter';
+import api from "../api";
 
 /**
  *
@@ -16,12 +16,12 @@ export default function Item(props) {
 
   function handleOnClick() {
     dispatch(showLoader())
-    axios.delete('https://test.megapolis-it.ru/api/list/' + props.id, )
-    .then(({data}) => {
+    api.deleteTodo(props.id)
+    .then(() => {
       dispatch(removeTodo(props.id));
     });
   }
-  console.log('render', props.id);
+
   return (
       <div className="todo-item">
         <div className="todo-item__id"><span>Задача</span> №{props.id}</div>

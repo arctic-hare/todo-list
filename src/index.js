@@ -3,19 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import {Provider} from "react-redux";
+import {createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
-
+import {composeWithDevTools} from "redux-devtools-extension";
 import todoApp from './reducers'
 
 const store = createStore(todoApp, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <App/>
     </Provider>,
     document.getElementById('root')
 );

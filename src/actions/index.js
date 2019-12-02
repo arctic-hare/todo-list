@@ -1,9 +1,5 @@
-export const ADD_TODO = 'ADD_TODO'
-export const EDIT_TODO = 'EDIT_TODO'
-export const FETCH_TODOS = 'FETCH_TODOS'
-export const REMOVE_TODO = 'REMOVE_TODO'
-export const SHOW_LOADER = 'SHOW_LOADER'
-export const HIDE_LOADER = 'HIDE_LOADER'
+import {ADD_TODO, EDIT_TODO, FETCH_TODOS, REMOVE_TODO,  SHOW_LOADER} from '../actions/actionsType'
+
 
 export const fetchTodos = (items) => {
   return {
@@ -38,14 +34,6 @@ export const showLoader = () => {
     payload: {},
   }
 }
-
-export const hideLoader = () => {
-  return {
-    type: HIDE_LOADER,
-    payload: {},
-  }
-}
-
 
 export const removeTodo = (id) => {
   return {

@@ -2,7 +2,12 @@ import React from "react";
 import List from "./pages/List";
 import Item from "./pages/Task";
 
-export default {
-  '/': () => <List/>,
-  '/:id': ({id}) => <Item id={+id}/>
+export default items => {
+  return {
+    '/': () => <List/>,
+    '/:id': ({id}) => {
+      const item = items.find(item => +item.id === +id);
+      return item ? <Item id={+id} title={item.title}/> : null
+    }
+  }
 };

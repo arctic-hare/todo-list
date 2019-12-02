@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import Input from '../components/Input'
-import {editTodo, hideLoader, showLoader} from '../actions/'
-import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
+import {editTodo, removeTodo, showLoader} from '../actions/'
+import {useDispatch} from "react-redux";
 import {navigate, A} from 'hookrouter';
+import api from '../api/'
 
 const createButton = (isChangeTitle) => {
   return isChangeTitle ? (
@@ -18,22 +18,15 @@ const createButton = (isChangeTitle) => {
 }
 
 export default function Task(props) {
-  const item = useSelector(state => state.items).find(
-      item => +item.id === +props.id)
 
-  if (!item) {
-    navigate('/')
-  }
-
-  const [title, setTitle] = useState(item.title);
+  const [title, setTitle] = useState(props.title);
   const dispatch = useDispatch();
 
   function handleOnClick() {
     dispatch(showLoader())
-    axios.delete('https://test.megapolis-it.ru/api/list/' + props.id, )
-    .then(({data}) => {
-      dispatch(hideLoader(props.id));
-      navigate('/')
+    api.deleteTodo(props.id)
+    .then(() => {
+      dispatch(removeTodo(props.id));
     });
   }
 
@@ -41,12 +34,11 @@ export default function Task(props) {
     e.preventDefault();
     dispatch(showLoader())
 
-    axios.post('https://test.megapolis-it.ru/api/list/' + props.id, {title})
-    .then(({data}) => {
+    api.editTodo(props.id, {title})
+    .then(() => {
       dispatch(editTodo(props.id, title))
       navigate('/')
     });
-
   }
 
   return (
@@ -61,7 +53,6 @@ export default function Task(props) {
             Удалить
           </button>
         </div>
-
         <Input
             onChange={setTitle}
             label="Краткое описание"
@@ -69,7 +60,7 @@ export default function Task(props) {
             style={{maxWidth: '400px'}}
             required={true}
         />
-        {createButton(title === item.title)}
+        {createButton(title === props.title)}
       </form>
   );
 }
