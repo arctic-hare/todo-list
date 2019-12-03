@@ -15,11 +15,16 @@ import AddTask from "../components/AddTask";
           <AddTask />
         </BtnPopup>
       </div>
-      <div className="list">
-        {items.map(item => {
-          return <Item {...item} key={item.id} />
-        })}
-      </div>
+      {items.length > 0 ? (
+          <div className="list">
+            {items.map(item => {
+              return <Item {...item} key={item.id} />
+            })}
+          </div>
+      ) : (
+          <span>Нет дел</span>
+          )
+      }
     </>
   );
 }

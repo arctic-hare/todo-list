@@ -23,11 +23,9 @@ function App() {
     <div className="App">
       <Loader>
         <main className="all">
-          {items.length > 0 &&
           <div className="container">
             {routeResult || navigate('/')}
           </div>
-          }
         </main>
       </Loader>
     </div>
